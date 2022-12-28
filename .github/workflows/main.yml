@@ -54,4 +54,5 @@ jobs:
             cd calendar-front.app
             docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }} ${{ env.REGISTRY }}
             docker ps -q --filter "name=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}" | grep -q . && docker stop ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+            dcoker rmi -f docker.kosipov.ru/cb97520/go-hello-mux-world:latest
             docker run -d --rm -p 8084:8093 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
